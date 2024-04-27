@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="main">
+      <button class="modal-open-button">Open Modal</button>
+      <dialog class="modal">
+        <h1 class="modal__title title">Стать партнёром проекта</h1>
+        <form class="modal__form" id="modal-form" onsubmit="">
+          <div class="modal__form-input-container">
+            <div class="modal__form-input-box">
+              <input
+                class="modal__form-input organization-input"
+                type="text"
+                required
+              />
+              <span class="modal__form-input-text">✱ Название организации</span>
+              <span class="organization-error"></span>
+            </div>
+            <div class="modal__form-input-box">
+              <input
+                class="modal__form-input phone-input"
+                type="text"
+                required
+              />
+              <span class="modal__form-input-text">✱ Телефон</span>
+              <span class="phone-error"></span>
+            </div>
+            <div class="modal__form-input-box">
+              <input
+                class="modal__form-input email-input"
+                type="text"
+                required
+              />
+              <span class="modal__form-input-text">✱ E-mail</span>
+              <span class="email-error"></span>
+            </div>
+          </div>
+          <div class="modal__form-select-box">
+            <select class="modal__form-select" required>
+              <option selected disabled hidden></option>
+              <option class="modal__form-select-option">Экология</option>
+              <option class="modal__form-select-option">Другое</option>
+            </select>
+            <span class="modal__form-select-text">✱ Направление</span>
+            <span class="modal__form-select-error"></span>
+          </div>
+
+          <div class="modal__form-photo">
+            <span class="modal__form-photo-label">✱ Логотип (jpeg, png)</span>
+            <div class="modal__form-photo-box">
+              <div class="modal__form-photo-load-group">
+                <img
+                  class="modal__form-photo-load-icon"
+                  src="./assets/icons/Vector.svg"
+                />
+                <span class="modal__form-photo-load">Выберите файл</span>
+              </div>
+              <img
+                class="modal__form-photo-remove"
+                src="./assets/icons/X.svg"
+              />
+            </div>
+          </div>
+        </form>
+        <section class="modal__social">
+          <div class="modal__social-container">
+            <div class="modal__social-item">
+              <a class="modal__social-link" href="#">avc.ru</a>
+              <img
+                class="modal__social-icon"
+                src="./assets//icons/global 1.svg"
+              />
+            </div>
+            <div class="modal__social-item">
+              <a class="modal__social-link" href="#">vk.com/shans</a>
+              <img class="modal__social-icon" src="./assets//icons/vk 1.svg" />
+            </div>
+            <div class="modal__social-item">
+              <a class="modal__social-link" href="#">ok.com/shans</a>
+              <img
+                class="modal__social-icon"
+                src="./assets//icons/odnoklassniki 3.svg"
+              />
+            </div>
+            <div class="modal__social-item">
+              <a class="modal__social-link" href="#">facebook.com/shans</a>
+              <img
+                class="modal__social-icon"
+                src="./assets//icons/facebook.svg"
+              />
+            </div>
+            <div class="modal__social-item">
+              <a class="modal__social-link" href="#">instagram.com/shans</a>
+              <img
+                class="modal__social-icon"
+                src="./assets//icons/XMLID 138.svg"
+              />
+            </div>
+            <div class="modal__social-item">
+              <a class="modal__social-link" href="#">youtube.com/shans</a>
+              <img
+                class="modal__social-icon"
+                src="./assets//icons/youtube 2.svg"
+              />
+            </div>
+            <div class="modal__social-item modal__social-label">
+              <span class="modal__social-placeholder">Руководитель</span>
+              <span class="modal__social-name"
+                >Александров Иван Васильевич</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <div class="modal__button-group button-box">
+          <button class="modal__button modal__button-submit" form="modal-form">
+            Стать партнёром проекта
+          </button>
+          <button class="modal__button modal__button-close">Отменить</button>
+        </div>
+      </dialog>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

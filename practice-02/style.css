@@ -1,0 +1,7 @@
+.custom-table,
+.table-header,
+.table-cell {
+  border: 1px solid black;
+  text-align: center;
+}
+
