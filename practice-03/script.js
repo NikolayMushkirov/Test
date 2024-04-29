@@ -1,12 +1,16 @@
 let loadedData = [];
 let sortKey = null;
 let sortDirection = "asc";
+let searchText = "";
 
 const input = document.querySelector(".input");
 input.addEventListener("input", () => {
-  const searchText = input.value.trim().toLowerCase();
+  searchText = input.value.trim().toLowerCase();
 
-  if (searchText.length < 3) return;
+  if (searchText.length < 3) {
+    renderTable(loadedData);
+    return;
+  }
 
   const filteredData = loadedData.filter((item) =>
     Object.values(item).some((value) =>
@@ -22,7 +26,7 @@ const fetchData = async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts");
     const data = await response.json();
     loadedData = data;
-    renderTable();
+    renderTable(loadedData);
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -42,7 +46,13 @@ const renderTable = (data = loadedData) => {
     th.classList.add("table-header");
     th.addEventListener("click", () => {
       sortTable(headerText);
-      renderTable();
+      renderTable(
+        loadedData.filter((item) =>
+          Object.values(item).some((value) =>
+            String(value).toLowerCase().includes(searchText)
+          )
+        )
+      );
     });
     headerRow.appendChild(th);
   });
@@ -83,6 +93,7 @@ const renderTable = (data = loadedData) => {
   document.body.prepend(input);
   input.focus();
 };
+
 const sortTable = (key) => {
   if (sortKey === key) {
     sortDirection = sortDirection === "asc" ? "desc" : "asc";

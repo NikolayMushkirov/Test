@@ -19,16 +19,23 @@
                 type="text"
                 required
               />
-              <span class="modal__form-input-text">✱ Название организации</span>
+              <span class="modal__form-input-text"
+                ><span class="modal__form-important-icon">✱</span> Название
+                организации</span
+              >
               <span class="organization-error"></span>
             </div>
             <div class="modal__form-input-box">
               <input
                 class="modal__form-input phone-input"
                 type="text"
+                name="phone"
+                placeholder="+7(000)000-00-00"
                 required
               />
-              <span class="modal__form-input-text">✱ Телефон</span>
+              <span class="modal__form-input-text"
+                ><span class="modal__form-important-icon">✱</span> Телефон</span
+              >
               <span class="phone-error"></span>
             </div>
             <div class="modal__form-input-box">
@@ -36,8 +43,11 @@
                 class="modal__form-input email-input"
                 type="text"
                 required
+                placeholder="name@example.com"
               />
-              <span class="modal__form-input-text">✱ E-mail</span>
+              <span class="modal__form-input-text"
+                ><span class="modal__form-important-icon">✱</span> E-mail</span
+              >
               <span class="email-error"></span>
             </div>
           </div>
@@ -47,63 +57,119 @@
               <option class="modal__form-select-option">Экология</option>
               <option class="modal__form-select-option">Другое</option>
             </select>
-            <span class="modal__form-select-text">✱ Направление</span>
+            <span class="modal__form-select-text"
+              ><span class="modal__form-important-icon">✱</span>
+              Направление</span
+            >
             <span class="modal__form-select-error"></span>
           </div>
 
           <div class="modal__form-photo">
-            <span class="modal__form-photo-label">✱ Логотип (jpeg, png)</span>
+            <span class="modal__form-photo-label"
+              ><span class="modal__form-important-icon">✱</span> Логотип (jpeg,
+              png)</span
+            >
             <div class="modal__form-photo-box">
               <div class="modal__form-photo-load-group">
-                <img
-                  class="modal__form-photo-load-icon"
-                  src="./assets/icons/Vector.svg"
+                <label class="modal__form-photo-load" for="file-input">
+                  <img
+                    class="modal__form-photo-load-icon"
+                    src="./assets/icons/Vector.svg"
+                  />
+                  <span class="modal__form-photo-choose-file"
+                    >Выберите файл</span
+                  >
+                </label>
+
+                <input
+                  type="file"
+                  class="modal__form-photo-input"
+                  id="file-input"
+                  accept="image/jpeg,
+                image/png"
                 />
-                <span class="modal__form-photo-load">Выберите файл</span>
               </div>
               <img
                 class="modal__form-photo-remove"
                 src="./assets/icons/X.svg"
               />
             </div>
+            <span class="modal__form-photo-error"></span>
           </div>
         </form>
+
         <section class="modal__social">
           <div class="modal__social-container">
             <div class="modal__social-item">
-              <a class="modal__social-link" href="#">avc.ru</a>
+              <input
+                type="text"
+                class="modal__social-input"
+                placeholder="Введите название"
+                value="https://"
+                form="modal-form"
+              />
               <img
                 class="modal__social-icon"
                 src="./assets//icons/global 1.svg"
               />
             </div>
             <div class="modal__social-item">
-              <a class="modal__social-link" href="#">vk.com/shans</a>
+              <input
+                type="text"
+                class="modal__social-input"
+                value="vk.com/"
+                form="modal-form"
+                placeholder="Введите название"
+              />
               <img class="modal__social-icon" src="./assets//icons/vk 1.svg" />
             </div>
             <div class="modal__social-item">
-              <a class="modal__social-link" href="#">ok.com/shans</a>
+              <input
+                type="text"
+                class="modal__social-input"
+                value="ok.com/"
+                form="modal-form"
+                placeholder="Введите название"
+              />
               <img
                 class="modal__social-icon"
                 src="./assets//icons/odnoklassniki 3.svg"
               />
             </div>
             <div class="modal__social-item">
-              <a class="modal__social-link" href="#">facebook.com/shans</a>
+              <input
+                type="text"
+                class="modal__social-input"
+                value="facebook.com/"
+                form="modal-form"
+                placeholder="Введите название"
+              />
               <img
                 class="modal__social-icon"
                 src="./assets//icons/facebook.svg"
               />
             </div>
             <div class="modal__social-item">
-              <a class="modal__social-link" href="#">instagram.com/shans</a>
+              <input
+                type="text"
+                class="modal__social-input"
+                value="instagram.com/"
+                form="modal-form"
+                placeholder="Введите название"
+              />
               <img
                 class="modal__social-icon"
                 src="./assets//icons/XMLID 138.svg"
               />
             </div>
             <div class="modal__social-item">
-              <a class="modal__social-link" href="#">youtube.com/shans</a>
+              <input
+                type="text"
+                class="modal__social-input"
+                value="youtube.com/"
+                form="modal-form"
+                placeholder="Введите название"
+              />
               <img
                 class="modal__social-icon"
                 src="./assets//icons/youtube 2.svg"
@@ -111,9 +177,11 @@
             </div>
             <div class="modal__social-item modal__social-label">
               <span class="modal__social-placeholder">Руководитель</span>
-              <span class="modal__social-name"
-                >Александров Иван Васильевич</span
-              >
+              <input
+                class="modal__social-name"
+                placeholder="Введите имя"
+                form="modal-form"
+              />
             </div>
           </div>
         </section>

@@ -1,8 +1,24 @@
+const organizationInput = document.querySelector(".organization-input");
+const organizationError = document.querySelector(".organization-error");
+
+const phoneInput = document.querySelector(".phone-input");
+const phoneError = document.querySelector(".phone-error");
+
+const emailInput = document.querySelector(".email-input");
+const emailError = document.querySelector(".email-error");
+
+const selectField = document.querySelector(".modal__form-select");
+const selectError = document.querySelector(".modal__form-select-error");
+
+const photoInput = document.querySelector(".modal__form-photo-input");
+const photoLoad = document.querySelector(".modal__form-photo-load");
+const photoBox = document.querySelector(".modal__form-photo-box");
+const photoRemove = document.querySelector(".modal__form-photo-remove");
+const photoError = document.querySelector(".modal__form-photo-error");
+
 const validateForm = () => {
   let isValid = true;
 
-  const organizationInput = document.querySelector(".organization-input");
-  const organizationError = document.querySelector(".organization-error");
   if (organizationInput.value.trim().length < 2) {
     isValid = false;
     organizationInput.classList.add("invalid");
@@ -13,15 +29,9 @@ const validateForm = () => {
     organizationError.textContent = "";
   }
 
-  const phoneInput = document.querySelector(".phone-input");
-  const phoneError = document.querySelector(".phone-error");
+  const phoneLength = phoneInput.value.length;
 
-  const isValidPhone =
-    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(
-      phoneInput.value
-    );
-
-  if (!isValidPhone) {
+  if (phoneLength < 18) {
     isValid = false;
     phoneError.textContent =
       "Номер телефона должен состоять минимум из 10 цифр";
@@ -31,8 +41,6 @@ const validateForm = () => {
     phoneInput.classList.remove("invalid");
   }
 
-  const emailInput = document.querySelector(".email-input");
-  const emailError = document.querySelector(".email-error");
   const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value);
   if (!isValidEmail) {
     isValid = false;
@@ -43,8 +51,6 @@ const validateForm = () => {
     emailInput.classList.remove("invalid");
   }
 
-  const selectField = document.querySelector(".modal__form-select");
-  const selectError = document.querySelector(".modal__form-select-error");
   if (selectField.selectedIndex === 0) {
     isValid = false;
     selectField.classList.add("invalid");
@@ -54,11 +60,83 @@ const validateForm = () => {
     selectError.textContent = "";
   }
 
+  if (!photoInput.files[0]) {
+    isValid = false;
+    photoError.textContent = "Необходимо приложить фото";
+  } else {
+    photoError.textContent = "";
+  }
+
   if (!isValid) {
     return false;
   }
   return true;
 };
+
+const prefixNumber = (str) => {
+  if (str === "7") {
+    return "7 (";
+  }
+  if (str === "8") {
+    return "8 (";
+  }
+  if (str === "9") {
+    return "7 (9";
+  }
+  return "7 (";
+};
+
+phoneInput.addEventListener("input", () => {
+  const value = phoneInput.value.replace(/\D+/g, "");
+  const numberLength = 11;
+
+  let result;
+  if (phoneInput.value.includes("+8") || phoneInput.value[0] === "8") {
+    result = "";
+  } else {
+    result = "+";
+  }
+
+  for (let i = 0; i < value.length && i < numberLength; i++) {
+    switch (i) {
+      case 0:
+        result += prefixNumber(value[i]);
+        continue;
+      case 4:
+        result += ") ";
+        break;
+      case 7:
+        result += "-";
+        break;
+      case 9:
+        result += "-";
+        break;
+      default:
+        break;
+    }
+    result += value[i];
+  }
+  phoneInput.value = result;
+});
+
+photoInput.addEventListener("change", () => {
+  const file = photoInput.files[0];
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    photoBox.style.background = `center / cover no-repeat url(${e.target.result})`;
+    photoLoad.style.display = "none";
+  };
+
+  reader.readAsDataURL(file);
+});
+
+photoRemove.addEventListener("click", () => {
+  photoBox.style.background = `center / cover no-repeat url("./assets/icons/photo.png")`;
+  photoLoad.style.display = "block";
+  photoInput.value = "";
+  photoInput.files = null;
+});
 
 const modal = document.querySelector(".modal");
 const form = document.querySelector(".modal__form");
